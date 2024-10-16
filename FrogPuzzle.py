@@ -11,33 +11,35 @@ class Anfibio(threading.Thread):
         self.nombre = nombre
         self.posicion = posicion_inicial
         self.carretera = carretera
+        self.lock = threading.Lock()  # Agregar un lock para evitar que 2 anfibios se muevan al mismo lugar
     
     def run(self):
         while True:
-            # Priorizar movimiento de ranas y sapos específicos
-            if self.nombre == "👉":
-                if self.puede_avanzar():
-                    self.posicion += 1  # Se mueve hacia adelante
-                elif self.puede_saltar():
-                    self.posicion += 2  # Salta sobre el sapo
-                elif self.puede_retroceder():
-                    # tirar dado de 0 a 2
-                    dado = random.randint(0, 2)
-                    # si dado es 0 no hace nada y sale, si es 1 o 2 retrocede
-                    if dado > 0:
-                        self.posicion -= 1  # Retrocede uno
+            with self.lock:  # Proteger todo el bloque de verificación y movimiento
+                # Priorizar movimiento de ranas y sapos específicos
+                if self.nombre == "👉":
+                    if self.puede_avanzar():
+                        self.posicion += 1  # Se mueve hacia adelante
+                    elif self.puede_saltar():
+                        self.posicion += 2  # Salta sobre el sapo
+                    elif self.puede_retroceder():
+                        # tirar dado de 0 a 2
+                        dado = random.randint(0, 2)
+                        # si dado es 0 no hace nada y sale, si es 1 o 2 retrocede
+                        if dado > 0:
+                            self.posicion -= 1  # Retrocede uno
 
-            elif self.nombre == "👈":
-                if self.puede_retroceder():
-                    self.posicion -= 1  # Se mueve hacia atrás
-                elif self.puede_saltar():
-                    self.posicion -= 2  # Salta sobre la rana
-                elif self.puede_avanzar():
-                    # tirar dado de 0 a 2
-                    dado = random.randint(0, 2)
-                    # si dado es 0 no hace nada y sale, si es 1 o 2 avanza
-                    if dado > 0:
-                        self.posicion += 1  # Avanza uno
+                elif self.nombre == "👈":
+                    if self.puede_retroceder():
+                        self.posicion -= 1  # Se mueve hacia atrás
+                    elif self.puede_saltar():
+                        self.posicion -= 2  # Salta sobre la rana
+                    elif self.puede_avanzar():
+                        # tirar dado de 0 a 2
+                        dado = random.randint(0, 2)
+                        # si dado es 0 no hace nada y sale, si es 1 o 2 avanza
+                        if dado > 0:
+                            self.posicion += 1  # Avanza uno
             
             self.carretera.mostrar_pista()
             time.sleep(0.5)
