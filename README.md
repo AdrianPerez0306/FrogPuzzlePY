@@ -29,14 +29,12 @@ Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 1. **Clonar el repositorio**:
    ```bash
    git clone https://github.com/MatiasGanino/FrogPuzzlePY
-
 2. **Acceder al directorio del proyecto**:
    ```bash
    cd FrogPuzzlePY
 3. **Ejecutar el archivo principal**:
     ```bash
    python FrogPuzzle.py
-
 ## Uso
 
 El juego empieza automáticamente al ejecutar el script. Verás una representación visual de la carretera y las posiciones de las ranas y sapos. Cada turno muestra el estado de la carretera después de los movimientos.
