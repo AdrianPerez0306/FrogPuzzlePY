@@ -28,12 +28,11 @@ Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/tuusuario/puzle-ranas-sapos.git
-   
+   git clone https://github.com/MatiasGanino/FrogPuzzlePY
+
 2. **Acceder al directorio del proyecto**:
    ```bash
-   cd puzle-ranas-sapos
-
+   cd FrogPuzzlePY
 3. **Ejecutar el archivo principal**:
     ```bash
    python FrogPuzzle.py
