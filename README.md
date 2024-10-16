@@ -36,7 +36,7 @@ Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 
 3. **Ejecutar el archivo principal**:
     ```bash
-   python main.py
+   python FrogPuzzle.py
 
 ## Uso
 

@@ -50,27 +50,27 @@ class Anfibio(threading.Thread):
                 
     def puede_avanzar(self):
         # Verificar si puede moverse hacia adelante
-        return self.posicion < LONGITUD_CARRETERA - 1 and self.carretera.pista[self.posicion + 1] == "-"
+        return self.posicion < LONGITUD_CARRETERA - 1 and self.carretera.pista[self.posicion + 1] == "🔲"
 
     def puede_retroceder(self):
         # Verificar si puede moverse hacia atrás
-        return self.posicion > 0 and self.carretera.pista[self.posicion - 1] == "-"
+        return self.posicion > 0 and self.carretera.pista[self.posicion - 1] == "🔲"
 
     def puede_saltar(self):
         # Verificar si puede saltar (hay un espacio vacío dos posiciones adelante o atrás)
         if self.nombre == "👉":
             return (self.posicion < LONGITUD_CARRETERA - 2 and 
                     self.carretera.pista[self.posicion + 1] == "👈" and 
-                    self.carretera.pista[self.posicion + 2] == "-")
+                    self.carretera.pista[self.posicion + 2] == "🔲")
         else:  # Sapo
             return (self.posicion > 1 and 
                     self.carretera.pista[self.posicion - 1] == "👉" and 
-                    self.carretera.pista[self.posicion - 2] == "-")
+                    self.carretera.pista[self.posicion - 2] == "🔲")
 
 # Clase que representa la carretera
 class Pista:
     def __init__(self):
-        self.pista = ["-"] * LONGITUD_CARRETERA
+        self.pista = ["🔲"] * LONGITUD_CARRETERA
         self.ranas = []
         self.lock = threading.Lock()  # Agregar un lock para evitar colisiones al mostrar la pista
     
@@ -90,7 +90,7 @@ class Pista:
     def mostrar_pista(self):
         with self.lock:  # Proteger la salida con un lock para evitar conflictos entre hilos
             # Limpiar la pista
-            self.pista = ["-"] * LONGITUD_CARRETERA
+            self.pista = ["🔲"] * LONGITUD_CARRETERA
             
             # Colocar las ranas en sus respectivas posiciones
             for rana in self.ranas:
