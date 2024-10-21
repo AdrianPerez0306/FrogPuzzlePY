@@ -91,6 +91,9 @@ class Pista:
     
     def mostrar_pista(self):
         with self.lock:  # Proteger la salida con un lock para evitar conflictos entre hilos
+            #Limpiar consola
+            print("\033c", end="")
+            
             # Limpiar la pista
             self.pista = [" _ "] * LONGITUD_CARRETERA
             
