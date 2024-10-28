@@ -91,8 +91,6 @@ class Pista:
     
     def mostrar_pista(self):
         with self.lock:  # Proteger la salida con un lock para evitar conflictos entre hilos
-            #Limpiar consola
-            print("\033c", end="")
             
             # Limpiar la pista
             self.pista = [" _ "] * LONGITUD_CARRETERA
@@ -103,7 +101,7 @@ class Pista:
                     self.pista[rana.posicion] = rana.nombre
             
             # Mostrar la pista
-            print("".join(self.pista))
+            print(self.pista)
             print("")  # Espacio extra para claridad visual
 
 # Crear la carretera y las ranas

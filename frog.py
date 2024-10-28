@@ -110,6 +110,7 @@ class Pista:
         with self.lock:  # Proteger la salida con un lock para evitar conflictos entre hilos
             self.armar_pista()
             print(self.pista)
+            print("")
 
     def debe_terminar(self):
         return self.pista == self.pista_inicial[::-1]
