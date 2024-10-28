@@ -17,7 +17,7 @@ class Anfibio(threading.Thread):
         while True:
             with self.lock:  # Proteger todo el bloque de verificación y movimiento
                 # Priorizar movimiento de ranas y sapos específicos
-                if self.nombre == "🐶":
+                if self.nombre == "🐸":
                     if self.puede_avanzar():
                         self.posicion += 1  # Se mueve hacia adelante
                     elif self.puede_saltar():
@@ -45,7 +45,7 @@ class Anfibio(threading.Thread):
             time.sleep(0.5)
             
             # Verificar si el juego debe finalizar
-            if (all(rana.posicion >= 4 for rana in self.carretera.ranas if rana.nombre == "🐶") and
+            if (all(rana.posicion >= 4 for rana in self.carretera.ranas if rana.nombre == "🐸") and
                 all(rana.posicion <= 2 for rana in self.carretera.ranas if rana.nombre == "🐱")):
                 print("¡El juego ha terminado!")
                 break
@@ -60,13 +60,13 @@ class Anfibio(threading.Thread):
 
     def puede_saltar(self):
         # Verificar si puede saltar (hay un espacio vacío dos posiciones adelante o atrás)
-        if self.nombre == "🐶":
+        if self.nombre == "🐸":
             return (self.posicion < LONGITUD_CARRETERA - 2 and 
                     self.carretera.pista[self.posicion + 1] == "🐱" and 
                     self.carretera.pista[self.posicion + 2] == " _ ")
         else:  # Sapo
             return (self.posicion > 1 and 
-                    self.carretera.pista[self.posicion - 1] == "🐶" and 
+                    self.carretera.pista[self.posicion - 1] == "🐸" and 
                     self.carretera.pista[self.posicion - 2] == " _ ")
 
 # Clase que representa la carretera
@@ -111,7 +111,7 @@ pista = Pista()
 
 # Crear ranas (se mueven hacia la derecha)
 for i in range(3):
-    pista.agregar_rana(Anfibio("🐶", i, pista))  # Ranas en posiciones 0, 1, 2
+    pista.agregar_rana(Anfibio("🐸", i, pista))  # Ranas en posiciones 0, 1, 2
 
 # Crear sapos (se mueven hacia la izquierda)
 for i in range(3):
